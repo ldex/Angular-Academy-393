@@ -40,7 +40,11 @@ export class ProductService {
 
     this.products$ = this.http
       .get<Product[]>(this.baseUrl, options)
-      .pipe(delay(1500), tap(console.table));
+      .pipe(
+        delay(1500), // for the demo...
+        //tap(console.table),
+        shareReplay()
+      );
   }
 
   insertProduct(newProduct: Product): Observable<Product> {
